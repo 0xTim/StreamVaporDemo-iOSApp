@@ -8,17 +8,43 @@
 
 /* Begin PBXBuildFile section */
 		23893C0228102B9300AC628C /* VaporDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C0128102B9300AC628C /* VaporDemoApp.swift */; };
-		23893C0428102B9300AC628C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C0328102B9300AC628C /* ContentView.swift */; };
 		23893C0628102B9400AC628C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23893C0528102B9400AC628C /* Assets.xcassets */; };
 		23893C0928102B9400AC628C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23893C0828102B9400AC628C /* Preview Assets.xcassets */; };
+		23893C11281056B700AC628C /* StreamChatSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 23893C10281056B700AC628C /* StreamChatSwiftUI */; };
+		23893C132810686B00AC628C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C122810686B00AC628C /* AppDelegate.swift */; };
+		23893C162816E1ED00AC628C /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C152816E1ED00AC628C /* Auth.swift */; };
+		23893C182816E21700AC628C /* Auth+Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C172816E21700AC628C /* Auth+Keychain.swift */; };
+		23893C1B2816E27200AC628C /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C1A2816E27200AC628C /* LoginResponse.swift */; };
+		23893C1D2816E28400AC628C /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C1C2816E28400AC628C /* UserToken.swift */; };
+		23893C202816E2E400AC628C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C1F2816E2E400AC628C /* LoginView.swift */; };
+		23893C222816F64600AC628C /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C212816F64600AC628C /* SignInWithApple.swift */; };
+		23893C24281706C400AC628C /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C23281706C400AC628C /* AsyncButton.swift */; };
+		23893C272818499F00AC628C /* LoginResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C262818499F00AC628C /* LoginResultData.swift */; };
+		23893C29281849B600AC628C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C28281849B600AC628C /* Errors.swift */; };
+		23893C2B281849CC00AC628C /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C2A281849CC00AC628C /* UserData.swift */; };
+		23893C2E281849F300AC628C /* OAuthSignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C2D281849F300AC628C /* OAuthSignInViewModel.swift */; };
+		23893C3028184C3700AC628C /* SignInWithAppleToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23893C2F28184C3700AC628C /* SignInWithAppleToken.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		23893BFE28102B9300AC628C /* VaporDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VaporDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23893C0128102B9300AC628C /* VaporDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaporDemoApp.swift; sourceTree = "<group>"; };
-		23893C0328102B9300AC628C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		23893C0528102B9400AC628C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23893C0828102B9400AC628C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		23893C122810686B00AC628C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		23893C152816E1ED00AC628C /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		23893C172816E21700AC628C /* Auth+Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Keychain.swift"; sourceTree = "<group>"; };
+		23893C1A2816E27200AC628C /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		23893C1C2816E28400AC628C /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
+		23893C1F2816E2E400AC628C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		23893C212816F64600AC628C /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
+		23893C23281706C400AC628C /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
+		23893C2528183C3A00AC628C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		23893C262818499F00AC628C /* LoginResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResultData.swift; sourceTree = "<group>"; };
+		23893C28281849B600AC628C /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		23893C2A281849CC00AC628C /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		23893C2D281849F300AC628C /* OAuthSignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthSignInViewModel.swift; sourceTree = "<group>"; };
+		23893C2F28184C3700AC628C /* SignInWithAppleToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleToken.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23893C11281056B700AC628C /* StreamChatSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,10 +78,15 @@
 		23893C0028102B9300AC628C /* VaporDemo */ = {
 			isa = PBXGroup;
 			children = (
+				23893C2C281849E800AC628C /* ViewModels */,
+				23893C2528183C3A00AC628C /* Info.plist */,
+				23893C1E2816E2D500AC628C /* Views */,
+				23893C192816E25E00AC628C /* Models */,
+				23893C142816E1E200AC628C /* Utilities */,
 				23893C0128102B9300AC628C /* VaporDemoApp.swift */,
-				23893C0328102B9300AC628C /* ContentView.swift */,
 				23893C0528102B9400AC628C /* Assets.xcassets */,
 				23893C0728102B9400AC628C /* Preview Content */,
+				23893C122810686B00AC628C /* AppDelegate.swift */,
 			);
 			path = VaporDemo;
 			sourceTree = "<group>";
@@ -65,6 +97,46 @@
 				23893C0828102B9400AC628C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		23893C142816E1E200AC628C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				23893C152816E1ED00AC628C /* Auth.swift */,
+				23893C172816E21700AC628C /* Auth+Keychain.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		23893C192816E25E00AC628C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				23893C1A2816E27200AC628C /* LoginResponse.swift */,
+				23893C1C2816E28400AC628C /* UserToken.swift */,
+				23893C262818499F00AC628C /* LoginResultData.swift */,
+				23893C28281849B600AC628C /* Errors.swift */,
+				23893C2A281849CC00AC628C /* UserData.swift */,
+				23893C2F28184C3700AC628C /* SignInWithAppleToken.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		23893C1E2816E2D500AC628C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				23893C1F2816E2E400AC628C /* LoginView.swift */,
+				23893C212816F64600AC628C /* SignInWithApple.swift */,
+				23893C23281706C400AC628C /* AsyncButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		23893C2C281849E800AC628C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				23893C2D281849F300AC628C /* OAuthSignInViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +155,9 @@
 			dependencies = (
 			);
 			name = VaporDemo;
+			packageProductDependencies = (
+				23893C10281056B700AC628C /* StreamChatSwiftUI */,
+			);
 			productName = VaporDemo;
 			productReference = 23893BFE28102B9300AC628C /* VaporDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +186,9 @@
 				Base,
 			);
 			mainGroup = 23893BF528102B9300AC628C;
+			packageReferences = (
+				23893C0F281056B700AC628C /* XCRemoteSwiftPackageReference "stream-chat-swiftui" */,
+			);
 			productRefGroup = 23893BFF28102B9300AC628C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +215,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23893C0428102B9300AC628C /* ContentView.swift in Sources */,
+				23893C132810686B00AC628C /* AppDelegate.swift in Sources */,
+				23893C182816E21700AC628C /* Auth+Keychain.swift in Sources */,
+				23893C1B2816E27200AC628C /* LoginResponse.swift in Sources */,
+				23893C1D2816E28400AC628C /* UserToken.swift in Sources */,
 				23893C0228102B9300AC628C /* VaporDemoApp.swift in Sources */,
+				23893C24281706C400AC628C /* AsyncButton.swift in Sources */,
+				23893C2E281849F300AC628C /* OAuthSignInViewModel.swift in Sources */,
+				23893C2B281849CC00AC628C /* UserData.swift in Sources */,
+				23893C272818499F00AC628C /* LoginResultData.swift in Sources */,
+				23893C29281849B600AC628C /* Errors.swift in Sources */,
+				23893C202816E2E400AC628C /* LoginView.swift in Sources */,
+				23893C222816F64600AC628C /* SignInWithApple.swift in Sources */,
+				23893C3028184C3700AC628C /* SignInWithAppleToken.swift in Sources */,
+				23893C162816E1ED00AC628C /* Auth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +360,7 @@
 				DEVELOPMENT_TEAM = YWLW23LT6G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VaporDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -280,7 +371,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.brokenhands.stream.VaporDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.getstream.swift.vapor-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -299,6 +390,7 @@
 				DEVELOPMENT_TEAM = YWLW23LT6G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VaporDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -309,7 +401,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.brokenhands.stream.VaporDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.getstream.swift.vapor-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -339,6 +431,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		23893C0F281056B700AC628C /* XCRemoteSwiftPackageReference "stream-chat-swiftui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getstream/stream-chat-swiftui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		23893C10281056B700AC628C /* StreamChatSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 23893C0F281056B700AC628C /* XCRemoteSwiftPackageReference "stream-chat-swiftui" */;
+			productName = StreamChatSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 23893BF628102B9300AC628C /* Project object */;
 }
