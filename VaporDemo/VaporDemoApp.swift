@@ -25,7 +25,7 @@ struct VaporDemoApp: App {
                 ChatChannelListView()
                     .environmentObject(auth)
             } else {
-                LoginView(apiHostname: VaporDemoApp.apiHostname, appDelegate: appDelegate).environmentObject(auth)
+                LoginView(apiHostname: VaporDemoApp.apiHostname).environmentObject(auth)
             }
         }
     }

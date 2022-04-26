@@ -10,12 +10,11 @@ struct LoginView: View {
     @EnvironmentObject var auth: Auth
     
     let apiHostname: String
-    let appDelegate: AppDelegate?
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
-    init(apiHostname: String, appDelegate: AppDelegate?) {
+    init(apiHostname: String) {
         self.apiHostname = apiHostname
         self._oauthSignInWrapper = StateObject(wrappedValue: OAuthSignInViewModel(apiHostname: apiHostname))
-        self.appDelegate = appDelegate
     }
     
     var body: some View {
@@ -161,7 +160,7 @@ struct LoginView: View {
                 throw LoginError()
             }
             let userData = try JSONDecoder().decode(UserData.self, from: data)
-            appDelegate?.connectUser(token: loginData.streamToken, username: userData.username, name: userData.username)
+            appDelegate.connectUser(token: loginData.streamToken, username: userData.username, name: userData.username)
         } catch {
             self.showingLoginErrorAlert = true
             throw error
@@ -172,6 +171,6 @@ struct LoginView: View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(apiHostname: "http://localhost:8080", appDelegate: nil)
+        LoginView(apiHostname: "http://localhost:8080")
     }
 }
