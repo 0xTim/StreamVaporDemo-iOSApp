@@ -12,7 +12,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     var chatClient: ChatClient = {
         //For the tutorial we use a hard coded api key and application group identifier
         var config = ChatClientConfig(apiKey: .init("uykdzqamca7z"))
-        config.applicationGroupIdentifier = "io.getstream.swift.vapor-demo"
+//        config.applicationGroupIdentifier = "io.getstream.swift.vapor-demo"
         
         // The resulting config is passed into a new `ChatClient` instance.
         let client = ChatClient(config: config)
@@ -23,6 +23,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions:
                      [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         // The `StreamChat` instance we need to assign
+        LogConfig.level = .debug
+        LogConfig.formatters = [
+            PrefixLogFormatter(prefixes: [.info: "ℹ️", .debug: "🛠", .warning: "⚠️", .error: "🚨"])
+        ]
         streamChat = StreamChat(chatClient: chatClient)
         return true
     }
