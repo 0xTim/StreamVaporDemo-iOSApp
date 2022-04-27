@@ -12,7 +12,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     var chatClient: ChatClient = {
         //For the tutorial we use a hard coded api key and application group identifier
         var config = ChatClientConfig(apiKey: .init("uykdzqamca7z"))
-//        config.applicationGroupIdentifier = "io.getstream.swift.vapor-demo"
         
         // The resulting config is passed into a new `ChatClient` instance.
         let client = ChatClient(config: config)

@@ -70,18 +70,14 @@ struct LoginView: View {
         guard let url = URL(string: path) else {
             fatalError("Failed to convert URL")
         }
-        guard
-            let loginString = "\(username):\(password)"
-                .data(using: .utf8)?
-                .base64EncodedString()
-        else {
+        guard let loginString = "\(username):\(password)".data(using: .utf8)?.base64EncodedString() else {
             fatalError("Failed to encode credentials")
         }
-        
+
         var loginRequest = URLRequest(url: url)
         loginRequest.addValue("Basic \(loginString)", forHTTPHeaderField: "Authorization")
         loginRequest.httpMethod = "POST"
-        
+
         do {
             let (data, response) = try await URLSession.shared.data(for: loginRequest)
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
@@ -101,7 +97,7 @@ struct LoginView: View {
         case .failure(let error):
             self.showingLoginErrorAlert = true
             print("Error \(error)")
-            throw LoginError()
+            throw error
         case .success(let authResult):
             if let credential = authResult.credential as? ASAuthorizationAppleIDCredential {
                 guard
@@ -123,13 +119,14 @@ struct LoginView: View {
                 guard let url = URL(string: path) else {
                     fatalError("Failed to convert URL")
                 }
-                
+
                 do {
                     var loginRequest = URLRequest(url: url)
                     loginRequest.httpMethod = "POST"
                     loginRequest.httpBody = try JSONEncoder().encode(requestData)
                     let (data, response) = try await URLSession.shared.data(for: loginRequest)
                     guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                        self.showingLoginErrorAlert = true
                         throw LoginError()
                     }
                     let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
@@ -139,6 +136,7 @@ struct LoginView: View {
                     throw error
                 }
             } else {
+                self.showingLoginErrorAlert = true
                 throw LoginError()
             }
         }
@@ -151,12 +149,13 @@ struct LoginView: View {
             guard let url = URL(string: path) else {
                 fatalError("Failed to convert URL")
             }
-            
+
             var loginRequest = URLRequest(url: url)
             loginRequest.addValue("Bearer \(loginData.apiToken)", forHTTPHeaderField: "Authorization")
             loginRequest.httpMethod = "GET"
             let (data, response) = try await URLSession.shared.data(for: loginRequest)
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                self.showingLoginErrorAlert = true
                 throw LoginError()
             }
             let userData = try JSONDecoder().decode(UserData.self, from: data)

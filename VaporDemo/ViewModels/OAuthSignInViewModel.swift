@@ -32,15 +32,15 @@ class OAuthSignInViewModel: NSObject, ObservableObject, ASWebAuthenticationPrese
             }
             authURL = githubAuthURL
         }
-        
+
         let scheme = "streamVapor"
-        
+
         return try await withCheckedThrowingContinuation { continuation in
             let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: scheme) { callbackURL, error in
                 guard error == nil, let callbackURL = callbackURL else {
                     return continuation.resume(with: .failure(OAuthFailure()))
                 }
-                
+
                 let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems
                 guard let token = queryItems?.first(where: { $0.name == "token" })?.value, let streamToken = queryItems?.first(where: { $0.name == "streamToken" })?.value else {
                     return continuation.resume(with: .failure(OAuthFailure()))
@@ -48,9 +48,8 @@ class OAuthSignInViewModel: NSObject, ObservableObject, ASWebAuthenticationPrese
                 let data = LoginResultData(apiToken: token, streamToken: streamToken)
                 return continuation.resume(with: .success(data))
             }
-            
+
             session.presentationContextProvider = self
-            session.prefersEphemeralWebBrowserSession = true
             session.start()
         }
     }
