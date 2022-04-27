@@ -20,7 +20,8 @@ struct VaporDemoApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
-        WindowGroup {
+        auth.logout()
+        return WindowGroup {
             if auth.isLoggedIn {
                 ChatChannelListView()
                     .environmentObject(auth)
