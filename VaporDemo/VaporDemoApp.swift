@@ -13,14 +13,14 @@ import StreamChatSwiftUI
 struct VaporDemoApp: App {
     
     static let apiHostname = "http://localhost:8080"
-    
+
     @StateObject
     var auth = Auth(apiHostname: VaporDemoApp.apiHostname)
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
-        return WindowGroup {
+        WindowGroup {
             if auth.isLoggedIn {
                 ChatChannelListView()
                     .environmentObject(auth)

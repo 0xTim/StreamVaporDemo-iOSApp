@@ -1,69 +1,82 @@
 import SwiftUI
 import Foundation
+import StreamChat
+import StreamChatSwiftUI
 import AuthenticationServices
 
 struct LoginView: View {
-    @State var username = ""
-    @State var password = ""
-    @State private var showingLoginErrorAlert = false
-    @StateObject var oauthSignInWrapper: OAuthSignInViewModel
     @EnvironmentObject var auth: Auth
-    
-    let apiHostname: String
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject var viewModel: LoginViewModel
     
     init(apiHostname: String) {
-        self.apiHostname = apiHostname
-        self._oauthSignInWrapper = StateObject(wrappedValue: OAuthSignInViewModel(apiHostname: apiHostname))
+        _viewModel = StateObject(wrappedValue: LoginViewModel(apiHostname: apiHostname))
     }
     
     var body: some View {
         VStack {
             Text("Log In")
                 .font(.largeTitle)
-            TextField("Email", text: $username)
+            TextField("Email", text: $viewModel.username)
                 .padding()
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
                 .keyboardType(.emailAddress)
                 .padding(.horizontal)
-            SecureField("Password", text: $password)
+            SecureField("Password", text: $viewModel.password)
                 .padding()
                 .padding(.horizontal)
             AsyncButton("Log In") {
-                let loginData = try await login()
-                try await handleLoginComplete(loginData: loginData)
+                let loginData = try await viewModel.login()
+                let token = try await viewModel.handleLoginComplete(loginData: loginData)
+                auth.token = token
             }
             .frame(width: 120.0, height: 60.0)
-            .disabled(username.isEmpty || password.isEmpty)
+            .disabled(viewModel.username.isEmpty || viewModel.password.isEmpty)
             Spacer()
             SignInWithAppleButton(.signIn) { request in
                 request.requestedScopes = [.fullName, .email]
             } onCompletion: { result in
                 Task {
-                    try await handleSIWA(result: result)
+                    try await viewModel.handleSIWA(result: result)
                 }
             }
             .padding()
             .frame(width: 250, height: 70)
             AsyncButton(image: "sign-in-with-google") {
-                let loginData = try await oauthSignInWrapper.signIn(with: .google)
-                try await handleLoginComplete(loginData: loginData)
+                let loginData = try await viewModel.oauthSignInWrapper.signIn(with: .google)
+                let token = try await viewModel.handleLoginComplete(loginData: loginData)
+                auth.token = token
             }
             .padding()
             .frame(width: 250, height: 70)
             AsyncButton(image: "sign-in-with-github") {
-                let loginData = try await oauthSignInWrapper.signIn(with: .github)
-                try await handleLoginComplete(loginData: loginData)
+                let loginData = try await viewModel.oauthSignInWrapper.signIn(with: .github)
+                let token = try await viewModel.handleLoginComplete(loginData: loginData)
+                auth.token = token
             }
             .padding()
             .frame(width: 250, height: 70)
         }
-        .alert(isPresented: $showingLoginErrorAlert) {
+        .alert(isPresented: $viewModel.showingLoginErrorAlert) {
             Alert(title: Text("Error"), message: Text("Could not log in. Check your credentials and try again"))
         }
     }
-    
+}
+
+final class LoginViewModel: ObservableObject {
+    let apiHostname: String
+    @Published var username = ""
+    @Published var password = ""
+    @Published var oauthSignInWrapper: OAuthSignInViewModel
+    @Published var showingLoginErrorAlert = false
+
+    @Injected(\.chatClient) var chatClient
+
+    init(apiHostname: String) {
+        self.apiHostname = apiHostname
+        self.oauthSignInWrapper = OAuthSignInViewModel(apiHostname: apiHostname)
+    }
+
     @MainActor
     func login() async throws -> LoginResultData {
         let path = "\(apiHostname)/auth/login"
@@ -90,7 +103,7 @@ struct LoginView: View {
             throw error
         }
     }
-    
+
     @MainActor
     func handleSIWA(result: Result<ASAuthorization, Error>) async throws -> LoginResultData {
         switch result {
@@ -141,9 +154,9 @@ struct LoginView: View {
             }
         }
     }
-    
+
     @MainActor
-    func handleLoginComplete(loginData: LoginResultData) async throws {
+    func handleLoginComplete(loginData: LoginResultData) async throws -> String {
         do {
             let path = "\(apiHostname)/account"
             guard let url = URL(string: path) else {
@@ -159,12 +172,30 @@ struct LoginView: View {
                 throw LoginError()
             }
             let userData = try JSONDecoder().decode(UserData.self, from: data)
-            appDelegate.connectUser(token: loginData.streamToken, username: userData.username, name: userData.username)
+            connectUser(token: loginData.streamToken, username: userData.username, name: userData.username)
         } catch {
             self.showingLoginErrorAlert = true
             throw error
         }
-        auth.token = loginData.apiToken
+        return loginData.apiToken
+    }
+
+    func connectUser(token: String, username: String, name: String) {
+        let tokenObject = try! Token(rawValue: token)
+
+        // Call `connectUser` on our SDK to get started.
+        chatClient.connectUser(
+            userInfo: .init(id: username,
+                            name: name,
+                            imageURL: URL(string: "https://vignette.wikia.nocookie.net/starwars/images/2/20/LukeTLJ.jpg")!),
+            token: tokenObject
+        ) { error in
+            if let error = error {
+                // Some very basic error handling only logging the error.
+                log.error("connecting the user failed \(error)")
+                return
+            }
+        }
     }
 }
 
