@@ -14,6 +14,8 @@ struct VaporDemoApp: App {
     
     static let apiHostname = "http://localhost:8080"
 
+    @Environment(\.scenePhase) private var scenePhase
+
     @StateObject
     var auth = Auth(apiHostname: VaporDemoApp.apiHostname)
     
@@ -26,6 +28,11 @@ struct VaporDemoApp: App {
                     .environmentObject(auth)
             } else {
                 LoginView(apiHostname: VaporDemoApp.apiHostname).environmentObject(auth)
+            }
+        }.onChange(of: scenePhase) { (newScenePhase) in
+            switch newScenePhase {
+            case .active: auth.logout()
+            default: break
             }
         }
     }
