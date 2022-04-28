@@ -25,7 +25,8 @@ struct LoginView: View {
                 .padding(.horizontal)
             AsyncButton("Log In") {
                 let loginData = try await viewModel.login()
-                try await viewModel.handleLoginComplete(loginData: loginData)
+                let apiToken = try await viewModel.handleLoginComplete(loginData: loginData)
+                auth.token = apiToken
             }
             .frame(width: 120.0, height: 60.0)
             .disabled(viewModel.username.isEmpty || viewModel.password.isEmpty)
@@ -35,20 +36,23 @@ struct LoginView: View {
             } onCompletion: { result in
                 Task {
                     let loginData = try await viewModel.handleSIWA(result: result)
-                    try await viewModel.handleLoginComplete(loginData: loginData)
+                    let apiToken = try await viewModel.handleLoginComplete(loginData: loginData)
+                    auth.token = apiToken
                 }
             }
             .padding()
             .frame(width: 250, height: 70)
             AsyncButton(image: "sign-in-with-google") {
                 let loginData = try await viewModel.oauthSignInWrapper.signIn(with: .google)
-                try await viewModel.handleLoginComplete(loginData: loginData)
+                let apiToken = try await viewModel.handleLoginComplete(loginData: loginData)
+                auth.token = apiToken
             }
             .padding()
             .frame(width: 250, height: 70)
             AsyncButton(image: "sign-in-with-github") {
                 let loginData = try await viewModel.oauthSignInWrapper.signIn(with: .github)
-                try await viewModel.handleLoginComplete(loginData: loginData)
+                let apiToken = try await viewModel.handleLoginComplete(loginData: loginData)
+                auth.token = apiToken
             }
             .padding()
             .frame(width: 250, height: 70)

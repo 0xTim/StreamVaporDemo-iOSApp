@@ -29,8 +29,8 @@ final class LoginViewModel: ObservableObject {
     }
 
     @MainActor
-    func handleLoginComplete(loginData: LoginResultData) async throws {
-        
+    func handleLoginComplete(loginData: LoginResultData) async throws -> String {
+        fatalError()
     }
 
     func connectUser(token: String, username: String, name: String) {
