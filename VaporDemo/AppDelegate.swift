@@ -27,24 +27,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             PrefixLogFormatter(prefixes: [.info: "ℹ️", .debug: "🛠", .warning: "⚠️", .error: "🚨"])
         ]
         streamChat = StreamChat(chatClient: chatClient)
-        return true
-    }
-    
-    func connectUser(token: String, username: String, name: String) {
-        let tokenObject = try! Token(rawValue: token)
         
-        // Call `connectUser` on our SDK to get started.
-        chatClient.connectUser(
-            userInfo: .init(id: username,
-                            name: name,
-                            imageURL: URL(string: "https://vignette.wikia.nocookie.net/starwars/images/2/20/LukeTLJ.jpg")!),
-            token: tokenObject
-        ) { error in
-            if let error = error {
-                // Some very basic error handling only logging the error.
-                log.error("connecting the user failed \(error)")
-                return
-            }
-        }
+        return true
     }
 }

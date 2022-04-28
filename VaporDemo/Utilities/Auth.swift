@@ -30,8 +30,8 @@ class Auth: ObservableObject {
             } else {
                 Keychain.delete(key: Auth.keychainKey)
             }
-            DispatchQueue.main.async {
-                self.isLoggedIn = newValue != nil
+            DispatchQueue.main.async { [weak self] in
+                self?.isLoggedIn = newValue != nil
             }
         }
     }
